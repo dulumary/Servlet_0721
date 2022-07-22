@@ -30,7 +30,7 @@ public class Ex05Controller extends HttpServlet {
 		out.println("<h3> 나이 : " + age + "</h3>");
 		
 		out.println("</body></html>");
-		
+	
 	}
 
 }
