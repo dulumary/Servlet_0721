@@ -16,12 +16,20 @@
 		
 		String fruit = request.getParameter("fruit");
 	
-	
+	//	String food = request.getParameter("food");
+		String[] foodArray = request.getParameterValues("food");
+		
+		// mincho pizza
+		String foodString = "";
+		for(int i = 0; i < foodArray.length; i++) {
+			 foodString += foodArray[i] + " "; // foodString = foodString + foodArray[i];
+		}
 	%>
 	
 	<div><%= nickname %></div>
 	<div><%= animal %></div>
 	<div><%= fruit %></div>
+	<div><%= foodString %></div>
 
 </body>
 </html>
