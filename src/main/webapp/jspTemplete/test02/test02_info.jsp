@@ -17,44 +17,55 @@
 </head>
 <body>
 <%@ include file="musicData.jsp" %>
-
+<%
+	
+    String musicIdString = request.getParameter("id");
+    int musicId = 0;
+    if(musicIdString != null) {
+    	musicId = Integer.parseInt(musicIdString);
+    }
+    
+    String musicTitle = request.getParameter("title");
+%>
 	<div class="container">
 		<jsp:include page="header.jsp" />
 		<jsp:include page="nav.jsp" />
 		<section>
+		
+			<% for(Map<String, Object> music : musicList) { 
+				int id = (Integer)music.get("id"); 
+				if((musicIdString != null && musicId == id) || 
+						(musicTitle != null && musicTitle.equals(music.get("title")))) {
+					int time = (Integer)music.get("time");
+				%>
+			<h3 class="mt-3">곡 정보</h3>
 			<div class="mt-3 artist-box d-flex border border-success p-3">
 				<div>
-					<img width="150" src="<%= artistInfo.get("photo") %>">
+					<img width="180" src="<%=music.get("thumbnail") %>">
 				</div>
 				<div class="ml-3">
-					<h3><%= artistInfo.get("name") %></h3>
-					<div><%= artistInfo.get("agency") %></div>
-                    <div><%= artistInfo.get("debute") %> 데뷔</div>
+					<div class="display-4"><%= music.get("title") %></div>
+					<div class="font-weight-bold text-success"><%= music.get("singer") %></div>
+					<div class="small mt-3">
+						<div>앨범 : <%= music.get("album") %></div>
+						<div>재생시간 : <%= time / 60 %> : <%= time % 60 %></div>
+						<div>작곡가 : <%= music.get("composer") %></div>
+						<div>작사가 : <%= music.get("lyricist") %></div>
+					
+					</div>
 				</div>
 			</div>
-		
-			<h4 class="mt-3">곡 목록</h4>
-			<table class="table table-sm text-center">
-				<thead>
-					<tr>
-						<th>no</th>
-						<th>제목</th>
-						<th>앨범</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% for(Map<String, Object> music : musicList) { %>
-                       <tr>
-                           <td><%= music.get("id") %></td>
-                           <td><a href="/jspTemplete/test02/test02_info.jsp?id=<%=music.get("id")%>"> <%= music.get("title") %> </a></td>
-                           <td><%= music.get("album") %></td>
-                       </tr>
-                     <% } %>
-                       
-				</tbody>
-			</table>
+			<h3 class="mt-3">가사 </h3>
+			<hr>
+			<div>가사정보 없음</div>
+			
+			<% }
+				
+			} %>
 		</section>
+		
 		<jsp:include page="footer.jsp" />
+	
 	
 	</div>
 
