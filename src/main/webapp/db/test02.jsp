@@ -32,6 +32,7 @@
 				<tr>
 					<th>사이트</th>
 					<th>사이트 주소</th>
+					<th></th>
 				</tr>
 			</thead>
 			
@@ -40,7 +41,7 @@
 				<tr>
 					<td><%= resultSet.getString("name") %></td>
 					<td><a href="<%= resultSet.getString("url") %>"><%= resultSet.getString("url") %></a></td>
-					
+					<td><a href="/db/test02/delete?id=<%= resultSet.getInt("id") %>" class="btn btn-danger btn-sm">삭제</a></td>
 				</tr>
 			<% } %>
 			

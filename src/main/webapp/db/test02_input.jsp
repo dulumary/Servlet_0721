@@ -14,8 +14,8 @@
 <body>
 	<div class="container">
 		<h1>즐겨찾기 추가</h1>
-		<form >
-			<label class="w-25">사이트명: <input type="text" class="form-control" name="name"></label><br>
+		<form method="post" action="/db/test02/insert">
+			<label class="w-25">사이트명: <input type="text" class="form-control" name="site"></label><br>
 			<label class="w-50">사이트 주소: <input type="text" class="form-control" name="url"></label>
 			
 			<div class="mt-3">
